@@ -12,7 +12,7 @@ const index = date.getDay();
 const current_day = days[index];
 
 const utc = new Date(date.getTime() + date.getTimezoneOffset() * 60000);
-const utc_time = utc.toISOString().slice(0,19)+ "Z"
+const utc_time = utc.toISOString().split('.')[0] + 'Z'
 
 const github_file_url = "https://github.com/Gbotemi-ojo/hng-task1-backend/blob/main/app.js";
 const github_repo_url = "https://github.com/Gbotemi-ojo/hng-task1-backend"
