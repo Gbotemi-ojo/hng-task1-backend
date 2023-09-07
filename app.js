@@ -4,15 +4,8 @@ const app = express();
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-
-const port = 5000;
-
-app.listen(port, ()=>{
-    console.log(`app is listening at port ${port}`);
-});
-
-const days = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"]
+const port = process.env.PORT || 5000;
+const days = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"]
 const date = new Date();
 const index = date.getDay();
 
@@ -23,7 +16,7 @@ const utc_time = utc.toISOString();
 
 const github_file_url = "https://github.com/Gbotemi-ojo/hng-task1-backend/blob/main/app.js";
 const github_repo_url = "https://github.com/Gbotemi-ojo/hng-task1-backend"
-app.get('/api',(req,res)=>{
+app.get('/api', (req, res) => {
     const slack_name = req.query.slack_name;
     const track = req.query.track
     res.status(200).json({
@@ -33,6 +26,9 @@ app.get('/api',(req,res)=>{
         track,
         github_file_url,
         github_repo_url,
-        status_code : res.statusCode
+        status_code: res.statusCode
     });
+});
+app.listen(port, () => {
+    console.log(`app is listening at port ${port}`);
 });
